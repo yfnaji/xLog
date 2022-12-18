@@ -51,7 +51,7 @@ prompt = xLog(fg="red") # Or you can set fg=31
 prompt("I am in red!")
 ```
 
-![fg_red](https://user-images.githubusercontent.com/59436765/208298568-3f8cd5b9-7824-4e5c-afe8-b3bd0e5ee611.png)
+<img width="93" alt="fg_red" src="https://user-images.githubusercontent.com/59436765/208313518-ff89ad1d-c6f0-49b3-bb45-7cb147d0d4bb.png">
 
 <h2 id="fg-rgb">RGB</h2>
 
