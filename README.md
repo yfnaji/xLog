@@ -18,7 +18,7 @@ This documentation will highlight how you can do this in the sections below - bu
 4. [func](#func)
     * [Output](#output)
     * [Errors](#errors)
-5. [Return a string](#return-string)
+5. [Return a string](#return-str)
 
 
 <h1 id="fg">fg (foreground)</h1>
@@ -30,7 +30,7 @@ The fg parameter allows you to set the color of the text. There are several ways
 Here is the table of escape codes available:
 
 
-<img width="395" alt="fg_table" src="https://user-images.githubusercontent.com/59436765/208327129-73ebbe35-9841-41e9-879c-15c2877797f3.png">
+<img width="395" alt="Screenshot 2022-12-19 at 01 04 32" src="https://user-images.githubusercontent.com/59436765/208329531-3b56cde3-62a5-49f3-b732-2676c46af92f.png">
 
 
 To implement any of these colors in your prompt, you can set `fg` to the name of the color (on the left) **_or_** the escape code (on the right).
@@ -86,9 +86,10 @@ The bg parameter will set the background color of the string you pass in the xLo
 
 
 <h2 id="bg-escape">Background Escape Codes</h2>
-Your background color options are:
+Your background color escape code options are:
 
-<img width="395" alt="bg_table" src="https://user-images.githubusercontent.com/59436765/208327667-508b9027-2a28-4db9-8d58-6cdd1ef099f6.png">
+
+<img width="395" alt="Screenshot 2022-12-19 at 01 05 01" src="https://user-images.githubusercontent.com/59436765/208329566-ff36391c-e00a-449f-b2f8-1b892588c1a5.png">
 
 
 Implementing background escape code colors is almost identical to setting the foreground colors (you just use the bg parameter instead):
@@ -184,7 +185,7 @@ prompt("I am the Grinch!")
 <img width="224" alt="Screenshot 2022-12-19 at 00 22 48" src="https://user-images.githubusercontent.com/59436765/208327583-fbfff654-72cf-4348-b97e-ba5132a7b6e9.png">
 
 
-<h2 id="raising-errors">Raising Errors</h2>
+<h2 id="errors">Raising Errors</h2>
 You can also use `xLog` to raise errors by setting `func` as an exception class:
 
 ```
