@@ -135,7 +135,8 @@ The style parameter allows you to print various font styles such as **bold**, *i
 
 Your escape code style options are:
 
-![styles_table](https://user-images.githubusercontent.com/59436765/208327516-82d7b50c-e25e-4ec9-8511-4362cd25e473.gif)
+
+![styles_table](https://user-images.githubusercontent.com/59436765/208328766-0f4f58bd-1b03-4318-b15b-7875aaf5dde3.gif)
 
 
 <span style="font-size:10px">Note: this table may be expanded if necessary or upon request</span>
