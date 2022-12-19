@@ -60,7 +60,7 @@ class xLog:
         self.func = func
         self.config = []
 
-        if not any((fg, bg, styles,)) or (fg_255 is not None or bg_255 is not None):
+        if not any((fg, bg, styles, fg_255, bg_255)):
             print(
                 "xLog: No configurations specified - "
                 "will just use terminal default (unless specified elsewhere)"
