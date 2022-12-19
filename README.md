@@ -18,7 +18,7 @@ This documentation will highlight how you can do this in the sections below - bu
 4. [func](#func)
     * [Output](#output)
     * [Errors](#errors)
-5. [Return a string](#return-string)
+5. [Return a string](#return-str)
 
 
 <h1 id="fg">fg (foreground)</h1>
@@ -184,7 +184,7 @@ prompt("I am the Grinch!")
 <img width="224" alt="Screenshot 2022-12-19 at 00 22 48" src="https://user-images.githubusercontent.com/59436765/208327583-fbfff654-72cf-4348-b97e-ba5132a7b6e9.png">
 
 
-<h2 id="raising-errors">Raising Errors</h2>
+<h2 id="errors">Raising Errors</h2>
 You can also use `xLog` to raise errors by setting `func` as an exception class:
 
 ```
