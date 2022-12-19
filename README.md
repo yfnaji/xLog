@@ -29,16 +29,9 @@ The fg parameter allows you to set the color of the text. There are several ways
 
 Here is the table of escape codes available:
 
-| Name | Escape Code | Name | Escape Code |
-| ----------- | ----------- | ----------- | ----------- |
-| <span style="color: rgb(1,1,1); background-color: white">black </span> | 30 | <span style="color: rgb(128,128,128)">black_hi</span> | 90 |
-| <span style="color: rgb(222,56,43)">red</span> | 31 | <span style="color: rgb(255,0,0)">red_hi</span> | 91 |
-| <span style="color: rgb(57,181,74)">green</span> | 32 | <span style="color: rgb(0,255,0)">green_hi</span> | 92 |
-| <span style="color: rgb(255,199,6)">yellow</span> | 33 | <span style="color: rgb(255,255,6)">yellow_hi</span> | 93 |
-| <span style="color: rgb(0,111,184)">blue</span> | 34 | <span style="color: rgb(0,0,255)">blue_hi</span> | 94 | 
-| <span style="color: rgb(118,38,113)">magenta</span> | 35 | <span style="color: rgb(255,0,255)">magenta_hi</span> | 95 | 
-| <span style="color: rgb(44,181,233)">cyan</span> | 36 | <span style="color: rgb(0,255,255)">cyan_hi</span> | 96 | 
-| <span style="color: rgb(204,204,204)">white</span> | 37 | <span style="color: rgb(255,255,255); background-color: black">white_hi</span> | 97 |
+
+<img width="395" alt="fg_table" src="https://user-images.githubusercontent.com/59436765/208327129-73ebbe35-9841-41e9-879c-15c2877797f3.png">
+
 
 To implement any of these colors in your prompt, you can set `fg` to the name of the color (on the left) **_or_** the escape code (on the right).
 
@@ -47,7 +40,7 @@ For example:
 ```
 from xlog import xLog
 
-prompt = xLog(fg="red") # Or you can set fg=31
+prompt = xLog(fg="red") # Or you can set `fg=31`
 prompt("I am in red!")
 ```
 
@@ -65,12 +58,14 @@ prompt = xLog(fg=(31, 165, 161)) # A kind of teal color
 prompt("I was made by using RGB colors!")
 ```
 
-> \> <span style="color: rgb(31,165,161)">I was made by using RGB colors!</span>
+<img width="229" alt="Screenshot 2022-12-19 at 00 19 40" src="https://user-images.githubusercontent.com/59436765/208327642-bf95d711-1a93-4071-9869-2a108d872156.png">
+
 
 <h2 id="fg-8bit">8-bit Colors</h2>
 Finally, we can use 8-bit colors, defined in a range from 0 to 255:
 
-<img src="8bit.png" width="600"/>
+<img width="594" alt="8bit" src="https://user-images.githubusercontent.com/59436765/208327378-f67e1c05-696f-4d8f-8d48-b4bcebf52d4c.png">
+
 
 **_NOTE_**: When using an 8-bit color for the foreground, you must use the `fg_255` parameter (as opposed to `fg`). If you set `fg` at the same time, `fg_255` will take precedence. 
 
@@ -82,7 +77,9 @@ from xlog import xLog
 prompt = xLog(fg_255=214)
 prompt("I would call this color pumpkin!")
 ```
-> \> <span style="color: rgb(255,175,0)">I would call this color pumpkin!</span>
+
+<img width="221" alt="Screenshot 2022-12-19 at 00 20 43" src="https://user-images.githubusercontent.com/59436765/208327402-390a9b49-a2ed-4896-9381-5f55264c80f0.png">
+
 
 <h1 id="bg">bg (background)</h1>
 The bg parameter will set the background color of the string you pass in the xLog object.
@@ -91,16 +88,8 @@ The bg parameter will set the background color of the string you pass in the xLo
 <h2 id="bg-escape">Background Escape Codes</h2>
 Your background color options are:
 
-| Name | Escape Code | Name | Escape Code |
-| ----------- | ----------- | ----------- | ----------- |
-| <span style="background-color: rgb(1,1,1); color: white">black</span> | 40 | <span style="background-color: rgb(128,128,128)">black_hi</span> | 100 |
-| <span style="background-color: rgb(222,56,43)">red</span> | 41 | <span style="background-color: rgb(255,0,0)">red_hi</span> | 101 |
-| <span style="background-color: rgb(57,181,74); color: black">green</span> | 42 | <span style="background-color: rgb(0,255,0); color: black">green_hi</span> | 102 |
-| <span style="background-color: rgb(255,199,6); color: black">yellow</span> | 43 | <span style="background-color: rgb(255,255,6); color: black">yellow_hi</span> | 103 |
-| <span style="background-color: rgb(0,111,184)">blue</span> | 44 | <span style="background-color: rgb(0,0,255)">blue_hi</span> | 104 | 
-| <span style="background-color: rgb(118,38,113)">magenta</span> | 45 | <span style="background-color: rgb(255,0,255); color: black">magenta_hi</span> | 105 | 
-| <span style="background-color: rgb(44,181,233); color: black">cyan</span> | 46 | <span style="background-color: rgb(0,255,255); color: black">cyan_hi</span> | 106 | 
-| <span style="background-color: rgb(204,204,204); color: black">white</span> | 47 | <span style="background-color: rgb(255,255,255); color: black">white_hi</span> | 107 |
+<img width="395" alt="bg_table" src="https://user-images.githubusercontent.com/59436765/208327667-508b9027-2a28-4db9-8d58-6cdd1ef099f6.png">
+
 
 Implementing background escape code colors is almost identical to setting the foreground colors (you just use the bg parameter instead):
 
@@ -110,7 +99,9 @@ from xlog import xLog
 prompt = xLog(bg="red_hi") # can equally do `bg=101`
 prompt("I am red, red is me")
 ```
-> \> <span style="background-color: rgb(255,0,0)">I am red, red is me</span>
+
+<img width="141" alt="Screenshot 2022-12-19 at 00 21 20" src="https://user-images.githubusercontent.com/59436765/208327451-e9a889f9-d060-4f65-ba12-e9c7e1f6e562.png">
+
 
 <h2 id="bg-rgb">RGB</h2>
 Using the RGB color scheme for background colors is identical to that of the foreground colors, with the only difference being that the `bg` parameter should be used instead:
@@ -119,9 +110,24 @@ Using the RGB color scheme for background colors is identical to that of the for
 from xlog import xLog
 
 prompt = xLog(bg=(135,0,255))
-prompt("A cool d color!")
+prompt("A cool background color!")
 ```
-> \> <span style="background-color: rgb(135,0,255)">A cool background color!</span>
+
+<img width="182" alt="Screenshot 2022-12-19 at 00 21 41" src="https://user-images.githubusercontent.com/59436765/208327469-f4321534-e5b1-41f8-b0b1-490a448f6f05.png">
+
+
+<h2 id="bg-8bit">8-bit Colors</h2>
+Again, using the 8-bit color scheme for the background color is very similar to that of the foreground except that you must use the `bg_255` parameter:
+
+```
+from xlog import xLog
+
+prompt = xLog(bg_255=33)
+prompt("I'm blue da ba dee da ba dye!")
+```
+
+<img width="211" alt="Screenshot 2022-12-19 at 00 38 48" src="https://user-images.githubusercontent.com/59436765/208328133-c8a234ad-61ef-43d3-80a2-68c4392fae93.png">
+
 
 <h1 id="styles">styles</h1>
 
@@ -129,14 +135,8 @@ The style parameter allows you to print various font styles such as **bold**, *i
 
 Your escape code style options are:
 
-| name | Description |
-| ----------- | ----------- |
-| **bold** | 1 |
-| <span style="color: rgb(79,79,79)">faint</span> | 2 |
-| _italic_ | 3 |
-| <span style="text-decoration: underline">underline</span> | 4 |
-| <img src="blinking.gif" width="65"/> | 5 |
-| ~~strikethrough~~ | 9 |
+![styles_table](https://user-images.githubusercontent.com/59436765/208327516-82d7b50c-e25e-4ec9-8511-4362cd25e473.gif)
+
 
 <span style="font-size:10px">Note: this table may be expanded if necessary or upon request</span>
 
@@ -149,7 +149,10 @@ from xlog import xLog
 prompt_1 = xLog(style=1) # you can also set style="bold"
 prompt_1("Look, i'm bold!")
 ```
-> \> **Look, i'm bold!**
+
+
+<img width="123" alt="Screenshot 2022-12-19 at 00 22 09" src="https://user-images.githubusercontent.com/59436765/208327540-709a6b94-9001-4c97-a8c1-d6aee82106a5.png">
+
 
 You can also utilise several different styles by setting the `styles` parameter to a set, list or tuple containing the styles name or escape codes:
 
@@ -159,7 +162,8 @@ from xlog import xLog
 prompt = xLog(style=[1, "italic", 4]) # Yes, you can mix and match different data types!
 prompt("I'm bold, italic and underlined!")
 ```
-> \> <span style="text-decoration: underline">**_I'm bold, italic and underlined!_**</span>
+<img width="230" alt="Screenshot 2022-12-19 at 00 22 32" src="https://user-images.githubusercontent.com/59436765/208327552-802155cf-ef33-406f-ba73-8d64e31d4613.png">
+
 
 <h1 id="func">func</h1>
 
@@ -175,7 +179,9 @@ import logging
 prompt = xLog(fg="green", func=logging.warning)
 prompt("I am the Grinch!")
 ```
-> \> WARNING:root:<span style="color: rgb(57,181,74)">I am the Grinch!</span>
+
+<img width="224" alt="Screenshot 2022-12-19 at 00 22 48" src="https://user-images.githubusercontent.com/59436765/208327583-fbfff654-72cf-4348-b97e-ba5132a7b6e9.png">
+
 
 <h2 id="raising-errors">Raising Errors</h2>
 You can also use `xLog` to raise errors by setting `func` as an exception class:
@@ -188,7 +194,8 @@ err_prompt = xLog(bg=101, func=CustomError)
 err_prompt("This custom error has been raised!")
 ```
 
-> \> \_\_main\_\_.CustomError: <span style="background-color: rgb(255,0,0)">This custom error has been raised!</span>
+<img width="400" alt="Screenshot 2022-12-19 at 00 23 05" src="https://user-images.githubusercontent.com/59436765/208327597-5b5d5724-3d22-498c-bcaf-c7b6e2b5f379.png">
+
 
 <h2 id="return-str">Returning a string</h2>
 
@@ -207,4 +214,5 @@ xlog_str = prompt.return_str("I will be printed later, and it will be great!")
 print(xlog_str)
 ```
 
-> \> <span style="background-color: rgb(0,0,255); color: rgb(255,0,0)">**_I will be printed later, and it will be great!_**</span>
+<img width="303" alt="Screenshot 2022-12-19 at 00 23 27" src="https://user-images.githubusercontent.com/59436765/208327613-f8bbf929-27a1-4888-855b-8261d5d0cd02.png">
+
