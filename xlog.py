@@ -4,7 +4,7 @@ from enum import Enum
 
 class EscapeCodes(Enum):
     reset = 0
-    # Text Styles
+    # Text styles
     bold = 1
     dim = 2
     italic = 3
@@ -55,12 +55,12 @@ class xLogError(Exception):
 
 class xLog:
     def __init__(
-        self, bg=None, fg=None, styles=[], func=print, fg_255=None, bg_255=None
+        self, bg=None, fg=None, style=[], func=print, fg_255=None, bg_255=None
     ):
         self.func = func
         self.config = []
 
-        if not any((fg, bg, styles, fg_255, bg_255)):
+        if not any((fg, bg, style, fg_255, bg_255)):
             print(
                 "xLog: No configurations specified - "
                 "will just use terminal default (unless specified elsewhere)"
@@ -173,35 +173,35 @@ class xLog:
         for color, color_255, _fg in colors:
             _set_color(color, color_255, _fg)
 
-        if type(styles) in (str, int):
-            styles = [styles]
-        elif type(styles) not in (list, set, tuple):
-            err = f"Datatype {type(styles)} for styles is incompatible\n"
+        if type(style) in (str, int):
+            style = [style]
+        elif type(style) not in (list, set, tuple):
+            err = f"Datatype {type(style)} for style is incompatible\n"
             err += "Must be one of string, int or sting/int items in "
             err += "list, set or tuple"
             raise xLogError(err)
 
-        for style in styles:
+        for st in style:
             try:
-                if _is_int_or_int_str(style):
-                    _escape_code_validator(int(style), "style")
-                    self.config.append(str(EscapeCodes(int(style)).value))
+                if _is_int_or_int_str(st):
+                    _escape_code_validator(int(st), "style")
+                    self.config.append(str(EscapeCodes(int(st)).value))
                 else:
-                    style = int(_str_to_escape_code(style))
-                    _escape_code_validator(style, "style")
-                    self.config.append(str(style))
+                    st = int(_str_to_escape_code(st))
+                    _escape_code_validator(st, "style")
+                    self.config.append(str(st))
             except KeyError:
-                if _is_int_or_int_str(style):
-                    err = f"Unkown code input <{style}>"
+                if _is_int_or_int_str(st):
+                    err = f"Unkown code input <{st}>"
                 else:
-                    err = f"Unknown string input <{style}>"
+                    err = f"Unknown string input <{st}>"
                 raise xLogError(f"{err}")
             except AssertionError:
-                name = EscapeCodes(style).name
+                name = EscapeCodes(st).name
                 name = name.replace('_hi', '').replace('_bg', '')
-                err = f"Cannot set style to {style} ({name})"
-                err += f"{style} is reserved for the "
-                if 29 < int(style) < 38 or 89 < int(style) < 98:
+                err = f"Cannot set style to {st} ({name})\n"
+                err += f"{st} is reserved for the "
+                if 29 < int(st) < 38 or 89 < int(st) < 98:
                     err += "fg parameter"
                 else:
                     err += "bg parameter"
@@ -269,11 +269,11 @@ class xLog:
         option = f"{base_config}mChoose one of the following options for details on options and implementation:\n\n"
         option += "-" + f"{'foreground (fg)': >20}\n"
         option += "-" + f"{'background (bg)': >20}\n"
-        option += "-" + f"{'styles (st)': >20}\n"
+        option += "-" + f"{'style (st)': >20}\n"
         option += "-" + f"{'rgb (rgb)': >20}\n"
         option += "-" + f"{'255-color (255)': >20}\n"
         option += "-" + f"{'func (f)': >20}\n\n"
-        option += "** NOTE: Some styles and functionalities may not work on certain terminals! **"
+        option += "** NOTE: Some style and functionalities may not work on certain terminals! **"
         option += "\n\nor alternatively, you can quit (q)\n\n"
 
         while True:
@@ -318,7 +318,7 @@ class xLog:
                 msg += border
                 print(msg)
 
-            elif choice in ("st", "styles"):
+            elif choice in ("st", "style", "styles"):
                 msg = "\n\n" + border
                 msg += "Here are your style options:\n\n"
                 msg += f" \x1b[40;97;1mbold: 1\x1b[0m\n"
