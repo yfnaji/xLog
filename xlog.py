@@ -68,15 +68,15 @@ class xLog:
             self.config = ""
             return
 
-        def rgb_validator(rgb):
+        def _rgb_validator(rgb):
             assert len(rgb) == 3 and all(
                 (-1 < int(rgb[0]), int(rgb[1]), int(rgb[2]) < 256)
             )
 
-        def is_int_or_int_str(code):
+        def _is_int_or_int_str(code):
             return type(code) is int or (type(code) is str and code.isdigit())
 
-        def str_to_escape_code(code, context="fg"):
+        def _str_to_escape_code(code, context="fg"):
 
             code = code.lower()
             hi = 0
@@ -90,7 +90,7 @@ class xLog:
 
             return EscapeCodes[code + bg].value + hi
 
-        def escape_code_validator(code, context):
+        def _escape_code_validator(code, context):
             fg = 29 < code < 38 or 89 < code < 98
             bg = 39 < code < 48 or 98 < code < 108
 
@@ -101,7 +101,7 @@ class xLog:
             elif context == "style":
                 assert not fg and not bg
 
-        def set_color(var, var_255, _fg=False):
+        def _set_color(var, var_255, _fg=False):
             context = "fg" if _fg else "bg"
             try:
                 if _fg:
@@ -113,15 +113,15 @@ class xLog:
                     var = None
                     assert -1 < var_255 < 256
                     self.config += [esc_code, "5", str(var_255)]
-                elif is_int_or_int_str(var):
-                    escape_code_validator(int(var), context)
+                elif _is_int_or_int_str(var):
+                    _escape_code_validator(int(var), context)
                     self.config.append(str(var))
                 elif type(var) is str:
-                    code = str_to_escape_code(var, context)
-                    escape_code_validator(code, context)
+                    code = _str_to_escape_code(var, context)
+                    _escape_code_validator(code, context)
                     self.config.append(str(code))
                 elif type(var) is tuple:
-                    rgb_validator(var)
+                    _rgb_validator(var)
                     self.config += [
                         esc_code,
                         "2",
@@ -156,7 +156,7 @@ class xLog:
                     err += "if you need further guidance"
                 raise xLogError(err)
             except KeyError:
-                if is_int_or_int_str(var):
+                if _is_int_or_int_str(var):
                     err = f"Unkown Escape code {var}"
                 elif type(var) is str:
                     err = f"Unknown Escape code string value <{var}>\n"
@@ -171,7 +171,7 @@ class xLog:
         ]
 
         for color, color_255, _fg in colors:
-            set_color(color, color_255, _fg)
+            _set_color(color, color_255, _fg)
 
         if type(styles) in (str, int):
             styles = [styles]
@@ -182,15 +182,15 @@ class xLog:
 
         for style in styles:
             try:
-                if is_int_or_int_str(style):
-                    escape_code_validator(int(style), "style")
+                if _is_int_or_int_str(style):
+                    _escape_code_validator(int(style), "style")
                     self.config.append(str(EscapeCodes(int(style)).value))
                 else:
-                    style = int(str_to_escape_code(style))
-                    escape_code_validator(style, "style")
+                    style = int(_str_to_escape_code(style))
+                    _escape_code_validator(style, "style")
                     self.config.append(str(style))
             except KeyError:
-                if is_int_or_int_str(style):
+                if _is_int_or_int_str(style):
                     err = f"Unkown code input <{style}>"
                 else:
                     err = f"Unknown string input <{style}>"
