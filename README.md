@@ -22,6 +22,7 @@ This documentation will highlight how you can do this in the sections below - bu
 
 
 <h1 id="fg">fg (foreground)</h1>
+
 The fg parameter allows you to set the color of the text. There are several ways to do this, elaborated below:
 
 
@@ -82,15 +83,16 @@ prompt("I would call this color pumpkin!")
 
 
 <h1 id="bg">bg (background)</h1>
+
 The bg parameter will set the background color of the string you pass in the xLog object.
 
 
 <h2 id="bg-escape">Background Escape Codes</h2>
+
 Your background color escape code options are:
 
 
 <img width="395" alt="Screenshot 2022-12-19 at 01 05 01" src="https://user-images.githubusercontent.com/59436765/208329566-ff36391c-e00a-449f-b2f8-1b892588c1a5.png">
-
 
 Implementing background escape code colors is almost identical to setting the foreground colors (you just use the bg parameter instead):
 
@@ -105,6 +107,7 @@ prompt("I am red, red is me")
 
 
 <h2 id="bg-rgb">RGB</h2>
+
 Using the RGB color scheme for background colors is identical to that of the foreground colors, with the only difference being that the `bg` parameter should be used instead:
 
 ```
@@ -118,6 +121,7 @@ prompt("A cool background color!")
 
 
 <h2 id="bg-8bit">8-bit Colors</h2>
+
 Again, using the 8-bit color scheme for the background color is very similar to that of the foreground except that you must use the `bg_255` parameter:
 
 ```
@@ -170,6 +174,7 @@ prompt("I'm bold, italic and underlined!")
 <h1 id="func">func</h1>
 
 <h2 id="output">Output</h2>
+
 You can specify which function you want to use to output your prompts. The built-in `print` function is used by default.
 
 For example:
@@ -186,9 +191,12 @@ prompt("I am the Grinch!")
 
 
 <h2 id="errors">Raising Errors</h2>
+
 You can also use `xLog` to raise errors by setting `func` as an exception class:
 
 ```
+from xlog import xLog
+
 class CustomError(Exception):
     pass
 
@@ -217,4 +225,3 @@ print(xlog_str)
 ```
 
 <img width="303" alt="Screenshot 2022-12-19 at 00 23 27" src="https://user-images.githubusercontent.com/59436765/208327613-f8bbf929-27a1-4888-855b-8261d5d0cd02.png">
-
