@@ -175,9 +175,10 @@ class xLog:
 
         if type(styles) in (str, int):
             styles = [styles]
-        elif not hasattr(styles, "__iter__"):
+        elif type(styles) not in (list, set, tuple):
             err = f"Datatype {type(styles)} for styles is incompatible\n"
-            err += "Please provide either int, str or an iterable"
+            err += "Must be one of string, int or sting/int items in "
+            err += "list, set or tuple"
             raise xLogError(err)
 
         for style in styles:
