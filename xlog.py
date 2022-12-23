@@ -70,7 +70,11 @@ class xLog:
 
         def _rgb_validator(rgb):
             assert len(rgb) == 3 and all(
-                (-1 < int(rgb[0]), int(rgb[1]), int(rgb[2]) < 256)
+                (
+                    -1 < int(rgb[0]) < 256, 
+                    -1 < int(rgb[1]) < 256, 
+                    -1 < int(rgb[2]) < 256
+                )
             )
 
         def _is_int_or_int_str(code):
