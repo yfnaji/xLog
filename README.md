@@ -1,8 +1,8 @@
 # xLog
 xLog allows you to output logs in your console or terminal with a little _zing_.
-This package provides an easy-to-use interface to <span style="color:red">colorize</span>, _italicize_, **bolden**, <span style="text-decoration: underline">underline</span> (and much more!) your python logs by simply setting exactly what you need in an xLog class.
+This package provides an easy-to-use interface to color, _italicize_, **bolden**, underline (and much more!) your python logs by simply setting exactly what you need with an `xLog` class.
 
-This documentation will highlight how you can do this in the sections below - but if you are too excited to wait, you can clone the package now and run `python3 xlog.py --help` which will provide a helpful interactive interface which allows you to navigate to sections you would like to know more about.
+This documentation will highlight how you can do this in the sections below - but if you are too excited to wait, you can clone the package now and run `python3 xlog.py --help` which will provide a helpful interactive interface which allows you to navigate to any configuration you wish to try out.
 
 <h1>Contents</h1>
 
@@ -19,12 +19,12 @@ This documentation will highlight how you can do this in the sections below - bu
     * [Output](#output)
     * [Errors](#errors)
 5. [Return a string](#return-str)
+6. [Additional Notes](#additional-notes)
 
 
 <h1 id="fg">fg (foreground)</h1>
 
-The fg parameter allows you to set the color of the text. There are several ways to do this, elaborated below:
-
+The fg parameter allows you to set the color of the text. There are several ways to do this elaborated below:
 
 <h2 id="fg-escape">Escape Codes</h2>
 
@@ -50,7 +50,7 @@ prompt("I am in red!")
 
 <h2 id="fg-rgb">RGB</h2>
 
-To use the RGB color scheme, you can pass a tuple of length 3 with RGB values.
+To use the RGB color scheme, you can pass a tuple of length 3 with the RGB values.
 
 ```
 from xlog import xLog
@@ -68,7 +68,7 @@ Finally, we can use 8-bit colors, defined in a range from 0 to 255:
 <img width="594" alt="8bit" src="https://user-images.githubusercontent.com/59436765/208327378-f67e1c05-696f-4d8f-8d48-b4bcebf52d4c.png">
 
 
-**_NOTE_**: When using an 8-bit color for the foreground, you must use the `fg_255` parameter (as opposed to `fg`). If you set `fg` at the same time, `fg_255` will take precedence. 
+**_NOTE_**: When using an 8-bit color for the foreground, you must use the `fg_255` parameter (as opposed to `fg`). If you set `fg` at the same time, `fg_255` will be used instead. 
 
 Example with 8-bit coloring:
 
@@ -84,17 +84,15 @@ prompt("I would call this color pumpkin!")
 
 <h1 id="bg">bg (background)</h1>
 
-The bg parameter will set the background color of the string you pass in the xLog object.
-
+The bg parameter will set the background color of the string you pass to the `xLog` object.
 
 <h2 id="bg-escape">Background Escape Codes</h2>
 
 Your background color escape code options are:
 
-
 <img width="395" alt="Screenshot 2022-12-19 at 01 05 01" src="https://user-images.githubusercontent.com/59436765/208329566-ff36391c-e00a-449f-b2f8-1b892588c1a5.png">
 
-Implementing background escape code colors is almost identical to setting the foreground colors (you just use the bg parameter instead):
+Implementing background escape code colors is almost identical to setting the foreground colors - you just use the `bg` parameter instead to set the background color:
 
 ```
 from xlog import xLog
@@ -108,7 +106,7 @@ prompt("I am red, red is me")
 
 <h2 id="bg-rgb">RGB</h2>
 
-Using the RGB color scheme for background colors is identical to that of the foreground colors, with the only difference being that the `bg` parameter should be used instead:
+Similar to setting the foreground color with RGB values, you can pass a tuple of length 3 to `bg` to set the background color:
 
 ```
 from xlog import xLog
@@ -136,19 +134,17 @@ prompt("I'm blue da ba dee da ba dye!")
 
 <h1 id="styles">styles</h1>
 
-The style parameter allows you to print various font styles such as **bold**, *italic*, <span style="text-decoration: underline">underline</span> etc.
+The style parameter allows you to print various font styles such as **bold**, *italic* etc.
 
 Your escape code style options are:
-
 
 ![styles_table](https://user-images.githubusercontent.com/59436765/208328766-0f4f58bd-1b03-4318-b15b-7875aaf5dde3.gif)
 
 
-<span style="font-size:10px">Note: this table may be expanded if necessary or upon request</span>
-
-You can implement one style or several styles simultaneously.
+_Note: this table may be expanded if necessary or upon request_
 
 We can set one particular style in the following way:
+
 ```
 from xlog import xLog
 
@@ -159,15 +155,15 @@ prompt_1("Look, i'm bold!")
 
 <img width="123" alt="Screenshot 2022-12-19 at 00 22 09" src="https://user-images.githubusercontent.com/59436765/208327540-709a6b94-9001-4c97-a8c1-d6aee82106a5.png">
 
-
-You can also utilise several different styles by setting the `styles` parameter to a set, list or tuple containing the styles name or escape codes:
+You can also employ several different styles by setting the `styles` parameter to a set, list or tuple containing the styles name or escape codes:
 
 ```
 from xlog import xLog
 
-prompt = xLog(style=[1, "italic", 4]) # Yes, you can mix and match different data types!
+prompt = xLog(style=[1, "italic", 4]) # Yes, you can mix and match using int and strings!
 prompt("I'm bold, italic and underlined!")
 ```
+
 <img width="230" alt="Screenshot 2022-12-19 at 00 22 32" src="https://user-images.githubusercontent.com/59436765/208327552-802155cf-ef33-406f-ba73-8d64e31d4613.png">
 
 
@@ -175,9 +171,9 @@ prompt("I'm bold, italic and underlined!")
 
 <h2 id="output">Output</h2>
 
-You can specify which function you want to use to output your prompts. The built-in `print` function is used by default.
+You can specify which function you want to use to output your prompts using the `func` parameter. The built-in `print` function is used by default.
 
-For example:
+For example, if we want to use `logging.warning`:
 
 ```
 from xlog import xLog
@@ -192,7 +188,7 @@ prompt("I am the Grinch!")
 
 <h2 id="errors">Raising Errors</h2>
 
-You can also use `xLog` to raise errors by setting `func` as an exception class:
+You can also use `xLog` to raise errors by setting `func` to an exception class:
 
 ```
 from xlog import xLog
@@ -206,12 +202,13 @@ err_prompt("This custom error has been raised!")
 
 <img width="400" alt="Screenshot 2022-12-19 at 00 23 05" src="https://user-images.githubusercontent.com/59436765/208327597-5b5d5724-3d22-498c-bcaf-c7b6e2b5f379.png">
 
+_Note: for this to work, the custom error **must** inherit from the `Exception` class_
 
 <h2 id="return-str">Returning a string</h2>
 
-If you do not feel like printing your (cooler looking) texts just yet, you have the option to save the string (along with the colors and styles) to be printed later if you wish.
+If you do not feel like printing your (cooler looking) logs just yet, you have the option to save the string (along with the set colors and styles) to be printed later if you wish.
 
-This is done via the `return_str` method:
+You can do this with the `return_str` method in the following way:
 
 ```
 from xlog import xLog
@@ -225,3 +222,10 @@ print(xlog_str)
 ```
 
 <img width="303" alt="Screenshot 2022-12-19 at 00 23 27" src="https://user-images.githubusercontent.com/59436765/208327613-f8bbf929-27a1-4888-855b-8261d5d0cd02.png">
+
+
+<h1 id="additional-notes">Additional Notes</h1>
+
+Thank you for making it this far!
+
+I am open to amendments and suggestions, so feel free to drop a message or write a comment and I will get around to addressing whatever you have raised.
