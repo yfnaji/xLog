@@ -116,23 +116,23 @@ class xLog:
                 if var_255:
                     var = None
                     assert -1 < var_255 < 256
-                    self.config += [esc_code, "5", str(var_255)]
+                    var = ";".join([esc_code, "5", str(var_255)])
                 elif _is_int_or_int_str(var):
                     _escape_code_validator(int(var), context)
-                    self.config.append(str(var))
                 elif type(var) is str:
-                    code = _str_to_escape_code(var, context)
-                    _escape_code_validator(code, context)
-                    self.config.append(str(code))
+                    var = _str_to_escape_code(var, context)
+                    _escape_code_validator(var, context)
                 elif type(var) is tuple:
                     _rgb_validator(var)
-                    self.config += [
-                        esc_code,
-                        "2",
-                        str(var[0]),
-                        str(var[1]),
-                        str(var[2]),
-                    ]
+                    var = ";".join(
+                            [
+                            esc_code,
+                            "2",
+                            str(var[0]),
+                            str(var[1]),
+                            str(var[2]),
+                        ]
+                    )
                 else:
                     err = f"{var if var else var_255} "
                     err += "is using an incompatible datatype for "
@@ -141,6 +141,9 @@ class xLog:
                     err += "Refer to xLog().help() "
                     err += "if you need further guidance"
                     raise xLogError(err)
+                
+                self.config.append(str(var))
+                
             except AssertionError:
                 if var_255:
                     err = f"{var_255} is not a valid code for {context}_255\n"
@@ -188,12 +191,12 @@ class xLog:
         for st in style:
             try:
                 if _is_int_or_int_str(st):
-                    _escape_code_validator(int(st), "style")
-                    self.config.append(str(EscapeCodes(int(st)).value))
+                    st = EscapeCodes(int(st)).value
                 else:
-                    st = int(_str_to_escape_code(st))
-                    _escape_code_validator(st, "style")
-                    self.config.append(str(st))
+                    st = _str_to_escape_code(st)
+
+                _escape_code_validator(st, "style")
+                self.config.append(str(st))
             except KeyError:
                 if _is_int_or_int_str(st):
                     err = f"Unkown code input <{st}>"
