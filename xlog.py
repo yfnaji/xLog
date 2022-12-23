@@ -116,23 +116,23 @@ class xLog:
                 if var_255:
                     var = None
                     assert -1 < var_255 < 256
-                    var = ";".join([esc_code, "5", str(var_255)])
+                    self.config += [esc_code, "5", str(var_255)]
                 elif _is_int_or_int_str(var):
                     _escape_code_validator(int(var), context)
+                    self.config.append(str(var))
                 elif type(var) is str:
                     var = _str_to_escape_code(var, context)
                     _escape_code_validator(var, context)
+                    self.config.append(str(var))
                 elif type(var) is tuple:
                     _rgb_validator(var)
-                    var = ";".join(
-                            [
-                            esc_code,
-                            "2",
-                            str(var[0]),
-                            str(var[1]),
-                            str(var[2]),
-                        ]
-                    )
+                    self.config += [
+                        esc_code,
+                        "2",
+                        str(var[0]),
+                        str(var[1]),
+                        str(var[2]),
+                    ]
                 else:
                     err = f"{var if var else var_255} "
                     err += "is using an incompatible datatype for "
@@ -141,9 +141,6 @@ class xLog:
                     err += "Refer to xLog().help() "
                     err += "if you need further guidance"
                     raise xLogError(err)
-                
-                self.config.append(str(var))
-                
             except AssertionError:
                 if var_255:
                     err = f"{var_255} is not a valid code for {context}_255\n"
@@ -234,7 +231,7 @@ class xLog:
 
         print(intro)
 
-        def color_prompt(context):
+        def _color_prompt(context):
             bg_shift = 0
 
             colors = [
