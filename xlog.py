@@ -102,7 +102,7 @@ class xLog:
                 assert not fg and not bg
 
         def set_color(var, var_255, _fg=False):
-            context = context = "fg" if _fg else "bg"
+            context = "fg" if _fg else "bg"
             try:
                 if _fg:
                     esc_code = "38"
