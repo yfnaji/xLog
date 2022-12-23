@@ -289,7 +289,7 @@ class xLog:
             if choice in ("fg", "foreground"):
                 msg = "\n\n" + border
                 msg += "Here are the foreground color options:\n"
-                msg += color_prompt("fg")
+                msg += _color_prompt("fg")
                 msg += "You can set the foreground color setting the fg parameter in the following ways:\n\n"
                 msg += 'prompt = xLog(fg="red") ~OR~ prompt = xLog(fg=31)\n\n'
                 msg += 'prompt("Hello World!")\n'
@@ -306,7 +306,7 @@ class xLog:
             elif choice in ("bg", "background"):
                 msg = "\n\n" + border
                 msg += "Here are the background color options:\n"
-                msg += color_prompt("bg")
+                msg += _color_prompt("bg")
                 msg += "You can set the foreground color setting the bg parameter in the following ways:\n\n"
                 msg += (
                     'prompt = xLog(bg="red") ~OR~ prompt = xLog(bg=41)\n'
